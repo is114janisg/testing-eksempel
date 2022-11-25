@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test SVG API</title>
+    <style>
+     /* Her kan stil defineres (vi skal bruke Cascading Style Sheets) */
+    </style>
+ <!--
+
+    [[[[[[[[     [[[[[[[[        [[[[   [[[[   [[[[  [[[[
+    [::::::[    [::[             [::[   [::[   [::[  [::[
+      [::[      [::[             [::[   [::[   [::[  [::[
+      [::[       [::::[   [[[[   [::[   [::[   [[[[[[[[[[
+      [::[          [::[         [::[   [::[         [::[
+    [::::::[        [::[         [::[   [::[         [::[
+    [[[[[[[[   [[[[[[[[          [[[[   [[[[         [[[[
+
+ -->
+</head>
+<body>
+
+
+<script>
+// Applikasjon
+
+/**
+ * Funksjonen for å konstruere SVG markup for å vise data vha.
+ * linje og sirkel elementer i SVG navnerom.
+ * @param {type} name  description
+ * @returns {object} en ELEMENT_NODE (fra DOM API)
+ */
+function konstruerSvgElementNode() {
+  const svgElementNode = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  const lineElementNode = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  const circleElementNode = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+  svgElementNode.setAttribute("version", "1.1");
+  svgElementNode.setAttribute("width", "350");
+  svgElementNode.setAttribute("height", "50");
+  svgElementNode.setAttribute("viewBox", "0 0 350 50"); // min-x, min-y, width and height
+
+  lineElementNode.setAttribute("x1", "10");
+  lineElementNode.setAttribute('x2', '300');
+  lineElementNode.setAttribute('y1', '20');
+  lineElementNode.setAttribute('y2', '20');
+  lineElementNode.setAttribute('stroke', 'black');
+  lineElementNode.setAttribute('stroke-width', '2');
+
+  circleElementNode.setAttribute("cx", "65");
+  circleElementNode.setAttribute("cy", "20");
+  circleElementNode.setAttribute("r", "10");
+  circleElementNode.setAttribute("stroke", "red");
+  circleElementNode.setAttribute("fill", "transparent");
+  circleElementNode.setAttribute("stroke-width", "2");
+
+  svgElementNode.appendChild(lineElementNode);
+  svgElementNode.appendChild(circleElementNode);
+
+  return svgElementNode;
+}
+
+/**
+ * Funksjonen for å konstruere SVG markup for å vise data vha.
+ * linje og sirkel elementer i SVG navnerom.
+ * @param {type} name  description
+ * @returns {type} en ELEMENT_NODE (fra DOM API)
+ */
+
+/**
+ * Teste et svg element node
+ */
+
+</script>
+
+<script>
+// Testliste
+
+
+// Definerer tester
+/**
+ * Sjekker at nodeName for elementet konstruert med
+ * konstruerSvgElementNode er "svg"
+ * @param ingen parametre for denne funksjonen
+ * @returns returnerer "undefined"; skriver til konsollen
+ * i tilfelle betingelse i console.assert Funksjonen
+ * er usant; skriver også verdiene på ønsket verdi
+ * og den "reelle" verdien som testfunksjonen returnerer
+ * i tilfelle betingelsen er usant
+ */
+function testKonstruerSvgElementNode() {
+
+  let onsket = "svg";
+
+  let svgElementNode = konstruerSvgElementNode();
+  let faatt = svgElementNode.nodeName.toLowerCase();
+
+  console.assert(onsket === faatt, { onsket, faatt });
+
+}
+
+/*
+ *
+ */
+function testSvgElementNodeOuterHTML() {
+
+  onsket = '<svg version="1.1" width="350" height="50" viewBox="0 0 350 50"><line x1="10" x2="300" y1="20" y2="20" stroke="black" stroke-width="2"></line><circle cx="65" cy="20" r="10" stroke="red" fill="transparent" stroke-width="2"></circle></svg>'
+
+  let svgElementNode = konstruerSvgElementNode();
+  let faatt = svgElementNode.outerHTML;
+
+  console.assert(onsket === faatt, { onsket, faatt });
+
+}
+
+
+// Kjører tester
+testKonstruerSvgElementNode();
+testSvgElementNodeOuterHTML();
+
+// Tegning på grensesnitt, ikke en test
+svgElementNode = konstruerSvgElementNode();
+console.log(typeof(svgElementNode));
+document.body.appendChild(svgElementNode);
+</script>
+
+
+</body>
+</html>
